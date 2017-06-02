@@ -1,0 +1,11 @@
+import java.io.*;
+
+File testmetadataFile = new File( basedir, "target/test-classes/testmetadata.json" );
+if (!testmetadataFile.exists()) {
+    throw new Exception("there should be a testmetadataFile!");
+}
+
+BufferedReader br = new BufferedReader(new FileReader(testmetadataFile));     
+if (br.readLine() == null) {
+    throw new Exception("testmetadataFile.json should NOT be empty!");
+}

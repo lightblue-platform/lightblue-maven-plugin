@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.redhat.lightblue.plugin.maven</groupId>
+    <artifactId>lightblue-build-plugin-test-pom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>it-metadata-plugin</artifactId>
+  <name>Test Metadata Plugin</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      
+      <plugin>
+        <groupId>com.redhat.lightblue.plugin.maven</groupId>
+        <artifactId>lightblue-build-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>lightblue-server-start</id>
+            <goals><goal>server-start</goal></goals>
+            <phase>generate-test-sources</phase><!-- normally shouldn't be needed -->
+            <configuration>
+              <datasourceName>mongodata</datasourceName>
+              <datasourcesJsonPath>src/test/resources/datasources.json</datasourcesJsonPath>
+              <metadataJsonPath>src/test/resources/lightblue-metadata.json</metadataJsonPath>
+              <crudJsonPath>src/test/resources/lightblue-crud.json</crudJsonPath>
+              <metadataPaths>
+                <metadataPath>src/test/resources/metadata/testmetadata.json</metadataPath>
+              </metadataPaths>
+            </configuration>
+          </execution>
+          <execution>
+            <goals><goal>metadata</goal></goals>
+            <configuration>
+              <configFilePath>src/test/resources/lightblue-client.properties</configFilePath>
+              <metadata>
+                <testmetadata/>
+              </metadata>
+            </configuration>
+          </execution>
+          <execution>
+            <id>lightblue-server-stop</id>
+            <goals><goal>server-stop</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
