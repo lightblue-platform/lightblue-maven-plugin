@@ -1,0 +1,26 @@
+language: java
+jdk:
+- oraclejdk8
+before_install:
+- cp ./etc/settings.xml ~/.m2/
+- cp ./etc/onFailure.sh  ~/
+- cp ./etc/onSuccess.sh  ~/
+- chmod 777 ~/onFailure.sh
+- chmod 777 ~/onSuccess.sh
+script:
+- mvn -B clean verify
+after_failure: ~/onFailure.sh
+after_success: ~/onSuccess.sh
+after_script:
+- mvn -B cobertura:cobertura coveralls:report
+notifications:
+  email: false
+  irc:
+    channels:
+    - chat.freenode.net#lightblue
+  on_success: always
+env:
+  global:
+  - secure: VpO7ClU/jbFtWudxyyqyzTHgs1ps9SRrL/LcW4cb1/TCrDkatd4+9wxGjTRZHOh4xoVoBmLDsi/IMk/C0ppq5X0zWkdg9nmNHVllFDVpWBLApp9bmQuHenR9QkBiCaIMZuvKfvT/hbUX4EqGb4ZC11P/+qrVXH0cbGihMBA+mrquDf69g8YlRg6w2c7iBWgQCgMBvBVL1Td8Hkun3OjirqOx+ofDG1tnUiT7CI4OCqngIqCB+tjopTS6tSNm+xf+OikXIJuM6zG00GwyR6jkaW531Y30S63xq1gm41qhmTpwrQUNvO6/rZer8Bx++vzEGgHWDRFwBBFha5MlO9/3DG91iS1lJrJf5XkMd7CDVuWjslHvQgYHCVOkk814BolpjlZzhwp8u0Vr2OJRwdeXwwadbnhQcCShMRTLB9Zt435t2UGbbfwvtlDuhRmEKmiiwKpwLzrfKR/O4RK+ho54unRX3poBORvrdSXxkH73iwNd0Ytx3qo/l3Aj0l369rE4zinm+cymoWIsxesh2gGYcchtL6AT98HctlgGYp49LRyxk7ayvvETFELrjEyid0DKwRY+spi73E8sJf95H4vY8mUaWWx30XbUPbS4PgehR4kl1DjYFc9hKSWg4U7DFtp0xuQmFIBgeMSiov7f8jHdS7MjDRUCpIccEvsTQ7R5haY=
+  - secure: qPRgzYKMt2LB/PK/W3IERQWDHIQRwEYd/u+IM8kjJiT5Mq2Qi4IG5T070ax5jqGiIbcBtBp/VFXphPTlljQsZclkEYoluuxfolRqN48uuUDuFJGCtV3anLa2LtDtIVgHDRVrJT1KKzpENZLWuOSx1RUC2uEQV65GL+91KYGsnk4DFfU8VvExfzpPTQWiwTTqolqfjS+FCCexLIJTYDi7C4w+bK0+YAs/kfvGV4LziDsi95v9HmdkZmUYBCV1o5cCnW01fIPmv7+DexRIWnesZK6JGgSct0lffjrnuk2isqPrtMA3PbywlnyqprMtcEC2jxGBHi2jO10lOoazJVlxygbRqCEZzoX7iAdJOKNosyo0MzEkbXt2cqNoxZdxk1nQN0MJyw8A9ayBSRa1hIVNVSAEBly8GO10DCz7W4o0bsriyzNcC7vFFRznsTy9A2US19N4U/rkJ9qiIwtfqLmFiDfcdCFO9z5TTWNfTgvvaEGH5at0EGkpew5y62jhrXCVy0ucI2IlcFwB5FiSxSscMGDRgpTqhj0gamxgkFGkmG5GF53ekeoV0mP3tQPqOnhzRnIKUYzVLyBu+dhehgs62xDsUxZQfPWMoPPCCKndS5pkSjaD7c9WJlqFWvUiFRNHpzUuNcSIGoTYafvivYCZcSTVzxYhQ1MhnLInsb2xU60=
+sudo: false
