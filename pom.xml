@@ -113,6 +113,7 @@
           <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
           <postBuildHookScript>verify</postBuildHookScript>
           <showErrors>true</showErrors>
+          <streamLogs>true</streamLogs>
         </configuration>
         <executions>
           <execution>
