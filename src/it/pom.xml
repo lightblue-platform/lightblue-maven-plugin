@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>com.redhat.lightblue.plugin.maven</groupId>
-  <artifactId>lightblue-build-plugin-test-pom</artifactId>
+  <artifactId>lightblue-maven-plugin-test-pom</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
  
