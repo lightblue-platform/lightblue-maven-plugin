@@ -1,5 +1,6 @@
 package com.redhat.lightblue.build.plugin;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
@@ -42,6 +43,8 @@ public class MetadataPlugin {
 
             LightblueMetadataResponse response = lightblueClient.metadata(
                     new MetadataGetEntityMetadataRequest(entityName, entityVersion));
+
+            new File(metadataDirectory).mkdirs();
 
             try (FileWriter writer = new FileWriter(metadataDirectory + "/" + entityName + ".json")) {
                 writer.write(response.getText());
