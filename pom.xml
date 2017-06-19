@@ -9,12 +9,12 @@
   
   <groupId>com.redhat.lightblue.plugin.maven</groupId>
   <artifactId>lightblue-maven-plugin</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>maven-plugin</packaging>
 
   <properties>
-    <lightblue-client.version>5.11.0-SNAPSHOT</lightblue-client.version>
-    <lightblue-rest.version>2.20.0-SNAPSHOT</lightblue-rest.version>
+    <lightblue-client.version>5.10.0</lightblue-client.version>
+    <lightblue-rest.version>2.19.0</lightblue-rest.version>
   </properties>
 
   <dependencies>
