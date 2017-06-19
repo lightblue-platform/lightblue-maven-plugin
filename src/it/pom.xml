@@ -58,6 +58,11 @@
             <target>1.8</target>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>com.redhat.lightblue.plugin.maven</groupId>
+          <artifactId>lightblue-maven-plugin</artifactId>
+          <version>1.0.0</version>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
