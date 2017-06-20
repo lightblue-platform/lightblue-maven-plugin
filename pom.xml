@@ -35,8 +35,8 @@
   </distributionManagement>
 
   <properties>
-    <lightblue-client.version>5.10.0</lightblue-client.version>
-    <lightblue-rest.version>2.19.0</lightblue-rest.version>
+    <lightblue-client.version>5.11.0-SNAPSHOT</lightblue-client.version>
+    <lightblue-rest.version>2.20.0-SNAPSHOT</lightblue-rest.version>
 
     <!-- Sonar -->  
     <sonar.exclusions>**/*Test.java,**/*Exception.java,**/com/redhat/lightblue/*/test/*.java</sonar.exclusions>  
