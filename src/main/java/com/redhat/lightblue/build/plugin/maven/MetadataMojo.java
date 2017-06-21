@@ -51,6 +51,7 @@ public class MetadataMojo extends AbstractMojo {
             getLog().info("Metadata Output Directory: " + outputPath);
             String lbConfigPath = sanitizePath(configFilePath);
             getLog().info("Using Lightblue Config: " + lbConfigPath);
+            getLog().info("Metadata being updated: " + getMetadata());
             new MetadataPlugin(
                     new LightblueHttpClient(
                             PropertiesLightblueClientConfiguration.fromInputStream(

@@ -39,10 +39,10 @@ public class MetadataPlugin {
 
     public void run() throws LightblueException, IOException {
         ObjectWriter prettyJsonWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
-        
+
         for (Entry<String, String> entity : metadata.entrySet()) {
             String entityName = entity.getKey();
-            String entityVersion = entity.getValue();
+            String entityVersion = (entity.getValue() == null) ? "default" : entity.getValue();
 
             LightblueMetadataResponse response = lightblueClient.metadata(
                     new MetadataGetEntityMetadataRequest(entityName, entityVersion));
