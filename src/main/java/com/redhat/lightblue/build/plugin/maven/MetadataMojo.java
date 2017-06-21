@@ -47,13 +47,14 @@ public class MetadataMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         try {
-            getLog().info("Metadata Output Directory: " + getMetadataDirectory());
-            String path = sanitizePath(configFilePath);
-            getLog().info("Using Lightblue Config: " + path);
+            String outputPath = sanitizePath(getMetadataDirectory());
+            getLog().info("Metadata Output Directory: " + outputPath);
+            String lbConfigPath = sanitizePath(configFilePath);
+            getLog().info("Using Lightblue Config: " + lbConfigPath);
             new MetadataPlugin(
                     new LightblueHttpClient(
                             PropertiesLightblueClientConfiguration.fromInputStream(
-                                    new FileInputStream(path))),
+                                    new FileInputStream(lbConfigPath))),
                     getMetadata(), getMetadataDirectory()).run();
         } catch (LightblueException | IOException e) {
             throw new MojoExecutionException("Unable to download metadata from lightblue", e);

@@ -9,6 +9,8 @@ import java.util.Map.Entry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.redhat.lightblue.client.LightblueClient;
 import com.redhat.lightblue.client.LightblueException;
 import com.redhat.lightblue.client.request.metadata.MetadataGetEntityMetadataRequest;
@@ -36,7 +38,8 @@ public class MetadataPlugin {
     }
 
     public void run() throws LightblueException, IOException {
-
+        ObjectWriter prettyJsonWriter = new ObjectMapper().writerWithDefaultPrettyPrinter();
+        
         for (Entry<String, String> entity : metadata.entrySet()) {
             String entityName = entity.getKey();
             String entityVersion = entity.getValue();
@@ -47,7 +50,7 @@ public class MetadataPlugin {
             new File(metadataDirectory).mkdirs();
 
             try (FileWriter writer = new FileWriter(metadataDirectory + "/" + entityName + ".json")) {
-                writer.write(response.getText());
+                writer.write(prettyJsonWriter.writeValueAsString(response.getJson()));
             }
         }
 
